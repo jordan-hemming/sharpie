@@ -38,7 +38,8 @@ namespace Sharpie.Backend;
 ///     represents a function in the library and is expected to have the same name.
 /// </typeparam>
 [PublicAPI]
-internal sealed class NativeLibraryWrapper<TFunctions>: INativeSymbolResolver, IDisposable
+internal sealed class NativeLibraryWrapper<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TFunctions>
+    : INativeSymbolResolver, IDisposable
 {
     private readonly IDotNetSystemAdapter _dotNetSystemAdapter;
     private readonly IReadOnlyDictionary<Type, Delegate> _methodTable;
@@ -127,7 +128,7 @@ internal sealed class NativeLibraryWrapper<TFunctions>: INativeSymbolResolver, I
             : throw new MissingMethodException($"Could not find {name} within the library.");
     }
 
-    private static IEnumerable<TypeInfo> GetRequiredDelegates(TypeInfo ti)
+    private static IEnumerable<TypeInfo> GetRequiredDelegates([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TypeInfo ti)
     {
         Debug.Assert(ti != null);
 
