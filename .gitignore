@@ -5,4 +5,5 @@ _ReSharper*/
 **/TestResults/
 coverage_report/
 **/bin/
+**/obj/
 artifacts/
